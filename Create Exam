@@ -1,0 +1,156 @@
+1. Print Duplicate Numbers//
+
+import React from 'react';
+
+function App() {
+  const arr = [5, 1, 4, 6, 7, 3, 5, 7, 3];
+  const duplicates = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] === arr[j] && duplicates.indexOf(arr[i]) === -1) {
+        duplicates.push(arr[i]);
+      }
+    }
+  }
+
+  return (
+    <div>
+      <p>Duplicate elements in the array:</p>
+      <ul>
+        {duplicates.map((duplicate, index) => (
+          <li key={index}>{duplicate}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+============================================================================================================
+
+2. Print line//
+
+import React from 'react';
+
+function App() {
+  const rows = 6; 
+
+  return (
+    <div>
+      {Array.from({ length: rows }, (_, rowIndex) => (
+        <p key={rowIndex}>
+          {Array.from({ length: rowIndex + 1 }, () => rowIndex + 1).join(' ')}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+export default App;
+
+=================================================================================================================
+
+3. 
+
+import React, { useState } from 'react';
+
+function App() {
+  const [newlyHiredMales, setNewlyHiredMales] = useState(0);
+  const [newlyHiredFemales, setNewlyHiredFemales] = useState(0);
+  const [permanentMales, setPermanentMales] = useState(0);
+  const [permanentFemales, setPermanentFemales] = useState(0);
+  const [resignedMales, setResignedMales] = useState(0);
+  const [resignedFemales, setResignedFemales] = useState(0);
+
+  const totalNewlyHired = newlyHiredMales + newlyHiredFemales;
+  const totalPermanent = permanentMales + permanentFemales;
+  const totalResigned = resignedMales + resignedFemales;
+  const totalEmployees = totalNewlyHired + totalPermanent - totalResigned;
+
+  const percentageNewlyHiredMales = ((newlyHiredMales / totalNewlyHired) * 100).toFixed(2);
+  const percentageNewlyHiredFemales = ((newlyHiredFemales / totalNewlyHired) * 100).toFixed(2);
+  const percentagePermanentMales = ((permanentMales / totalPermanent) * 100).toFixed(2);
+  const percentagePermanentFemales = ((permanentFemales / totalPermanent) * 100).toFixed(2);
+  const percentageResignedMales = ((resignedMales / totalResigned) * 100).toFixed(2);
+  const percentageResignedFemales = ((resignedFemales / totalResigned) * 100).toFixed(2);
+
+  return (
+    <div className="App">
+      <h1>Employee Statistics Calculator</h1>
+
+      <div>
+        <label>Enter the number of newly hired males:</label>
+        <input
+          type="number"
+          value={newlyHiredMales}
+          onChange={(e) => setNewlyHiredMales(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <label>Enter the number of newly hired females:</label>
+        <input
+          type="number"
+          value={newlyHiredFemales}
+          onChange={(e) => setNewlyHiredFemales(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <label>Enter the number of permanent position males:</label>
+        <input
+          type="number"
+          value={permanentMales}
+          onChange={(e) => setPermanentMales(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <label>Enter the number of permanent position females:</label>
+        <input
+          type="number"
+          value={permanentFemales}
+          onChange={(e) => setPermanentFemales(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <label>Enter the number of resigned males:</label>
+        <input
+          type="number"
+          value={resignedMales}
+          onChange={(e) => setResignedMales(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <label>Enter the number of resigned females:</label>
+        <input
+          type="number"
+          value={resignedFemales}
+          onChange={(e) => setResignedFemales(Number(e.target.value))}
+        />
+      </div>
+
+      <h2>Statistics</h2>
+      <div>
+        <p>Total newly hired employees: {totalNewlyHired}</p>
+        <p>Male: {percentageNewlyHiredMales}%</p>
+        <p>Female: {percentageNewlyHiredFemales}%</p>
+      </div>
+      
+      <div>
+        <p>Total permanent employees: {totalPermanent}</p>
+        <p>Percentage of males in permanent position: {percentagePermanentMales}%</p>
+        <p>Percentage of females in permanent position: {percentagePermanentFemales}%</p>
+      </div>
+      <div>
+        <p>Total resigned employees: {totalResigned}</p>
+        <p>Percentage of males resigned: {percentageResignedMales}%</p>
+        <p>Percentage of females resigned: {percentageResignedFemales}%</p>
+      </div>
+      
+    </div>
+  );
+}
+
+export default App;
+
+
